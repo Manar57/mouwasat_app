@@ -7,6 +7,7 @@ import '../app/localization/app_localizations.dart';
 import '../app/theme/app_theme.dart';
 import 'login_screen.dart';
 import 'new_file_screen.dart';
+import 'hospitals_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final User user;
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("✅ تم حذف جميع البيانات المحلية")),
+        const SnackBar(content: Text("✅ تم حذف جميع البيانات المحلية")),
       );
     }
   }
@@ -53,15 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(AppLocalizations.of(context).logout),
-        content: Text('Are you sure you want to logout?'),
+        content: const Text('Are you sure you want to logout?'),
         actions: [
           IconButton(
             onPressed: _clearLocalData,
-            icon: Icon(Icons.delete_forever),
+            icon: const Icon(Icons.delete_forever),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Cancel'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () async {
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Text(
               AppLocalizations.of(context).logout,
-              style: TextStyle(color: AppTheme.errorColor),
+              style: const TextStyle(color: AppTheme.errorColor),
             ),
           ),
         ],
@@ -101,11 +102,11 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: _toggleLanguage,
-            icon: Icon(Icons.language),
+            icon: const Icon(Icons.language),
           ),
           IconButton(
             onPressed: _logout,
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -122,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
         backgroundColor: AppTheme.primaryColor,
-        child: Icon(Icons.add, color: Colors.white),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -135,13 +136,13 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: AppTheme.grey300,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home),
+            icon: const Icon(Icons.home_outlined),
+            activeIcon: const Icon(Icons.home),
             label: localizations.home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.medical_services_outlined),
-            activeIcon: Icon(Icons.medical_services),
+            icon: const Icon(Icons.medical_services_outlined),
+            activeIcon: const Icon(Icons.medical_services),
             label: localizations.services,
           ),
         ],
@@ -168,14 +169,14 @@ class _HomeScreenState extends State<HomeScreen> {
     final localizations = AppLocalizations.of(context);
 
     return SingleChildScrollView(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           GridView.count(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 2,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
@@ -215,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -228,11 +229,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Icon(icon, color: iconColor),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                 ),
@@ -245,13 +246,25 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildServicesScreen() {
-    return Center(
-      child: Text(
-        'Services Screen',
-        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-          color: AppTheme.grey300,
+    return Column(
+      children: [
+        ListTile(
+          leading: const Icon(
+            Icons.local_hospital_outlined,
+            color: AppTheme.primaryColor,
+          ),
+          title: const Text('Hospitals'),
+          trailing: const Icon(Icons.arrow_forward_ios),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HospitalsScreen(),
+              ),
+            );
+          },
         ),
-      ),
+      ],
     );
   }
 
@@ -260,41 +273,41 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Text(
         'Appointments Screen',
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-          color: AppTheme.grey300,
-        ),
+              color: AppTheme.grey300,
+            ),
       ),
     );
   }
 
   Widget _buildProfileScreen() {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           Card(
             child: Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
                   Container(
                     width: 80,
                     height: 80,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: AppTheme.primaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.person,
                       color: Colors.white,
                       size: 40,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text(
                     widget.user.name,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     widget.user.email,
                     style: Theme.of(context).textTheme.bodyMedium,
@@ -303,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
         ],
       ),
     );
@@ -315,11 +328,11 @@ class _HomeScreenState extends State<HomeScreen> {
     required String value,
   }) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Row(
         children: [
           Icon(icon, color: AppTheme.grey300),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   title,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   value,
                   style: Theme.of(context).textTheme.bodyLarge,
@@ -369,26 +382,27 @@ class SubmitButton extends StatelessWidget {
         onPressed: (enabled && !isLoading) ? onPressed : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: color ?? AppTheme.primaryColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           elevation: 4,
         ),
         child: isLoading
-            ? SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(
-            color: Colors.white,
-            strokeWidth: 2,
-          ),
-        )
+            ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ),
+              )
             : Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
-          ),
-        ),
+                text,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
   }
