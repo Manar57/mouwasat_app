@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+
+
 import '../screens/login_screen.dart';
 import '../services/auth_service.dart';
 import '../models/user_model.dart';
 import 'localization/app_localizations.dart';
 import '../screens/home_screen.dart';
+import '../app/theme/app_theme.dart';
 
 class MouwasatApp extends StatefulWidget {
   const MouwasatApp({Key? key}) : super(key: key);
@@ -50,17 +54,7 @@ class _MouwasatAppState extends State<MouwasatApp> {
         Locale('ar'),
       ],
 
-      // Main theme
-      theme: ThemeData(
-        primaryColor: const Color(0xFF2D2B76),
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF2D2B76),
-          elevation: 0,
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.white),
-        ),
-      ),
+      theme: AppTheme.lightTheme,
 
       // Determines which screen to show (Login or Home)
       home: AuthWrapper(

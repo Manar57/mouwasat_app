@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../utils/input_formatters.dart';
+import '../utils/number_utils.dart';
 import '../app/localization/app_localizations.dart';
 import '../app/theme/app_theme.dart';
 import '../utils/error_utils.dart';
@@ -36,7 +36,7 @@ class GovernmentIdField extends StatelessWidget {
       keyboardType: TextInputType.number,
       textInputAction: textInputAction,
       inputFormatters: [
-        ArabicDigitsInputFormatter(),
+        // NumberUtils(),
         LengthLimitingTextInputFormatter(10),
       ],
       enabled: enabled,

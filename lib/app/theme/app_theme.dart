@@ -145,8 +145,8 @@ class AppTheme {
       );
 
   // Card Styling
-  static CardTheme get cardTheme => CardTheme(
-        elevation: 2,
+  static CardThemeData get cardTheme => CardThemeData(
+  elevation: 2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -155,8 +155,8 @@ class AppTheme {
       );
 
   // Dialog Styling
-  static DialogTheme get dialogTheme => DialogTheme(
-        backgroundColor: surfaceColor,
+  static DialogThemeData get dialogTheme => DialogThemeData(
+  backgroundColor: surfaceColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),

@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("✅ تم حذف جميع البيانات المحلية")),
+        const SnackBar(content: Text("All local data has been deleted✅")),
       );
     }
   }
